@@ -1,0 +1,117 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jo&Ashi - Dropshipping Store</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #f9f9f9; }
+    header { background: #333; color: white; padding: 1rem; text-align: center; }
+    nav a { color: white; margin: 0 15px; text-decoration: none; }
+    .container { width: 90%; margin: auto; }
+    h2 { margin-top: 30px; }
+    .products { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 20px; }
+    .product { background: white; padding: 15px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); text-align: center; }
+    .product img { max-width: 100%; border-radius: 8px; }
+    .product h3 { margin: 10px 0; }
+    .product button { background: #28a745; color: white; border: none; padding: 10px 15px; border-radius: 5px; cursor: pointer; }
+    .product button:hover { background: #218838; }
+    footer { background: #333; color: white; text-align: center; padding: 1rem; margin-top: 30px; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Jo&Ashi Store</h1>
+    <nav>
+      <a href="#products">Products</a>
+      <a href="#cart">Cart</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <div class="container">
+    <!-- Products Section -->
+    <section id="products">
+      <h2>Our Bestsellers</h2>
+      <div class="products">
+        <div class="product">
+          <img src="https://m.media-amazon.com/images/I/71X5C8CkE0L._AC_SY355_.jpg" alt="Wireless Earbuds">
+          <h3>Wireless Earbuds</h3>
+          <p>$39.99</p>
+          <button onclick="addToCart('Wireless Earbuds', 39.99)">Add to Cart</button>
+        </div>
+        <div class="product">
+          <img src="https://m.media-amazon.com/images/I/81dXud6c6XL._AC_SY355_.jpg" alt="Smartwatch">
+          <h3>Smartwatch Pro</h3>
+          <p>$59.99</p>
+          <button onclick="addToCart('Smartwatch Pro', 59.99)">Add to Cart</button>
+        </div>
+        <div class="product">
+          <img src="https://m.media-amazon.com/images/I/71aK3RmtIGL._AC_SY355_.jpg" alt="Neck Massager">
+          <h3>Neck Massager</h3>
+          <p>$34.99</p>
+          <button onclick="addToCart('Neck Massager', 34.99)">Add to Cart</button>
+        </div>
+        <div class="product">
+          <img src="https://m.media-amazon.com/images/I/71sUG2jtkYL._AC_SY355_.jpg" alt="Water Bottle">
+          <h3>Smart Water Bottle</h3>
+          <p>$24.99</p>
+          <button onclick="addToCart('Smart Water Bottle', 24.99)">Add to Cart</button>
+        </div>
+        <div class="product">
+          <img src="https://m.media-amazon.com/images/I/71gdGZ4d6IL._AC_SY355_.jpg" alt="Backpack">
+          <h3>Travel Backpack</h3>
+          <p>$44.99</p>
+          <button onclick="addToCart('Travel Backpack', 44.99)">Add to Cart</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Cart Section -->
+    <section id="cart" style="margin-top:30px;">
+      <h2>Your Cart</h2>
+      <ul id="cart-items"></ul>
+      <p><strong>Total: $<span id="cart-total">0.00</span></strong></p>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" style="margin-top:30px;">
+      <h2>Contact Us</h2>
+      <form>
+        <input type="text" placeholder="Your Name" required style="padding:10px; width:100%; margin-bottom:10px;">
+        <input type="email" placeholder="Your Email" required style="padding:10px; width:100%; margin-bottom:10px;">
+        <textarea placeholder="Your Message" required style="padding:10px; width:100%; margin-bottom:10px;"></textarea>
+        <button type="submit" style="background:#007bff; color:white; padding:10px 15px; border:none; border-radius:5px;">Send</button>
+      </form>
+    </section>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Jo&Ashi. All rights reserved.</p>
+  </footer>
+
+  <script>
+    let cart = [];
+
+    function addToCart(name, price) {
+      cart.push({name, price});
+      updateCart();
+    }
+
+    function updateCart() {
+      const cartItems = document.getElementById('cart-items');
+      const cartTotal = document.getElementById('cart-total');
+      cartItems.innerHTML = '';
+      let total = 0;
+      cart.forEach(item => {
+        let li = document.createElement('li');
+        li.textContent = `${item.name} - $${item.price.toFixed(2)}`;
+        cartItems.appendChild(li);
+        total += item.price;
+      });
+      cartTotal.textContent = total.toFixed(2);
+    }
+  </script>
+</body>
+</html>
